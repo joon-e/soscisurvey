@@ -15,7 +15,11 @@ make_label_vector <- function(variable, values) {
 #' Adds value labels to a variable
 add_label <- function(variable, values) {
   if (length(values) > 0) {
-    labelled::val_labels(variable) <- values
+    # Coerce label to character if variable is character
+    if (is.character(variable)) {
+      values <- setNames(as.character(values), names(values))
+    }
+    val_labels(variable) <- values
   }
   return(variable)
 }
@@ -36,7 +40,11 @@ make_missing_vector <- function(variable, missings) {
 #' Adds missings to variable
 add_missings <- function(variable, missings) {
   if (length(missings) > 0) {
-    labelled::na_values(variable) <- missings
+    # Coerce label to character if variable is character
+    if (is.character(variable)) {
+      missings <- setNames(as.character(missings), names(missings))
+    }
+    na_values(variable) <- missings
   }
   return(variable)
 }
