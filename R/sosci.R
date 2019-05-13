@@ -67,10 +67,6 @@ sosci <- function(URL, ...) {
     unnest() %>%
     unnest()
 
-  # Add variable labels
-  var.labels <- setNames(as.character(vars$label), vars$var)
-  var_label(data) <- var.labels
-
   # Add attribute
   var.types <- tolower(pull(vars, type))
   var.input <- tolower(pull(vars, input))
@@ -88,6 +84,10 @@ sosci <- function(URL, ...) {
   # Add missings
   miss.vals <- map(names(data), make_missing_vector, missings)
   data <- modify2(data, miss.vals, add_missings)
+
+  # Add variable labels
+  var.labels <- setNames(as.character(vars$label), vars$var)
+  var_label(data) <- var.labels
 
   return(data)
 }
