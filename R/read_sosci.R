@@ -9,13 +9,13 @@
 #' @import labelled
 #'
 #' @param URL SoSciSurvey API URL
-#' @param ... Additional parameters for API retrieval. See:
-#'     https://www.soscisurvey.de/help/doku.php/en:results:data-api
+#' @param ... Additional parameters for API retrieval.
+#'     See: \url{https://www.soscisurvey.de/help/doku.php/en:results:data-api}
 #'
 #' @return A labelled tibble
 #'
 #' @export
-sosci <- function(URL, ...) {
+read_sosci <- function(URL, ...) {
 
   params <- list(...)
 
