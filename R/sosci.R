@@ -18,3 +18,5 @@
 #' @docType package
 #' @name soscisurvey
 NULL
+
+utils::globalVariables(c("var", "value", "label", "type", "input", "question", "sysvar"))
