@@ -6,6 +6,14 @@
 \usage{
 add_missings(variable, missings)
 }
+\arguments{
+\item{variable}{Variable to add missings to}
+
+\item{missings}{Vector containg missing values}
+}
+\value{
+A vector with user-defined missings
+}
 \description{
 Adds missings to variable
 }

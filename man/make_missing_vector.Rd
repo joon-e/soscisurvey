@@ -6,6 +6,14 @@
 \usage{
 make_missing_vector(variable, missings)
 }
+\arguments{
+\item{variable}{Variable to create vector for}
+
+\item{missings}{Tibble containg missing value information}
+}
+\value{
+A vector of missing values
+}
 \description{
 Creates a vector missing values for all variables
 }

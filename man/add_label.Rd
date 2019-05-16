@@ -6,6 +6,14 @@
 \usage{
 add_label(variable, values)
 }
+\arguments{
+\item{variable}{Variable to add labels to}
+
+\item{values}{Named vector containing value-label pairs}
+}
+\value{
+A labelled vector
+}
 \description{
 Adds value labels to a variable
 }

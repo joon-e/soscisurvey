@@ -6,6 +6,14 @@
 \usage{
 make_label_vector(variable, values)
 }
+\arguments{
+\item{variable}{Variable to create vector for}
+
+\item{values}{Tibble containing value and label columns}
+}
+\value{
+A named vector
+}
 \description{
 Creates a named vector of value labels for all variables
 }
