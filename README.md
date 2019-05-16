@@ -4,8 +4,8 @@
 # SoSciSurvey
 
 This package loads data obtained with
-[SoSciSurvey](https://www.soscisurvey.de/en/index) as a tidy, labelled
-dataset by…
+[SoSciSurvey](https://www.soscisurvey.de/en/index) into *R* as a tidy,
+labelled dataset by…
 
   - grabbing the data as a JSON file via the [SoSciSurvey
     API](https://www.soscisurvey.de/help/doku.php/en:results:data-api)
