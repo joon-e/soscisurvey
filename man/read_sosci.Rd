@@ -10,7 +10,10 @@ read_sosci(URL, ...)
 \item{URL}{SoSciSurvey API URL}
 
 \item{...}{Additional parameters for API retrieval.
-See: \url{https://www.soscisurvey.de/help/doku.php/en:results:data-api}}
+    See: \url{https://www.soscisurvey.de/help/doku.php/en:results:data-api}.
+
+    Add \code{= TRUE} / \code{= FALSE} to parameters that are set without values in the API call
+    (e.g., \code{vSkipTime}, \code{vQuality})}
 }
 \value{
 A labelled tibble
