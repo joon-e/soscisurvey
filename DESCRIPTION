@@ -3,10 +3,9 @@ Type: Package
 Title: Load data from SoSciSurvey
 Version: 0.1.0
 Author: Julian Unkel
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Maintainer: Julian Unkel <julian.unkel@gmail.com>
+Description: This package loads data obtained with SoSciSurvey as a tidy, labelled dataset.
+License:  GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -14,6 +13,7 @@ Imports:
   httr,
   labelled,
   purrr,
+  stats,
   tibble,
   tidyr
 RoxygenNote: 6.1.1
