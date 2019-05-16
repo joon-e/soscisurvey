@@ -5,16 +5,16 @@ Version: 0.1.0
 Author: Julian Unkel
 Maintainer: Julian Unkel <julian.unkel@gmail.com>
 Description: This package loads data obtained with SoSciSurvey as a tidy, labelled dataset.
-License:  GPL-3
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports:
-  dplyr,
-  httr,
-  labelled,
-  purrr,
-  stats,
-  tibble,
-  tidyr
 RoxygenNote: 6.1.1
 URL: https://github.com/joon-e/soscisurvey
+Imports: 
+    dplyr,
+    httr,
+    labelled,
+    purrr,
+    stats,
+    tibble,
+    tidyr
