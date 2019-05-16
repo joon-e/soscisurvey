@@ -115,7 +115,7 @@ data
 #> #   Q_VIEWER <int>, LASTPAGE <int>, MAXPAGE <int>
 ```
 
-The returned tibble contains variable and value labels (using the)
+The returned tibble contains variable and value labels (using the
 [`labelled`](https://cran.r-project.org/web/packages/labelled/)
 package). Value labels are visible in the console output. Variable
 labels are also displayed in the R data viewer (`View()`). If no labels

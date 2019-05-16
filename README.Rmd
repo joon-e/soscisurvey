@@ -64,7 +64,7 @@ data <- read_sosci("https://www.soscisurvey.de/test166518/?act=mhBZkaKkPn1IvCWyU
 data
 ```
 
-The returned tibble contains variable and value labels (using the) [`labelled`](https://cran.r-project.org/web/packages/labelled/) package). Value labels are visible in the console output. Variable labels are also displayed in the R data viewer (`View()`). If no labels are defined for some values, the numeric anchors as set in _SoSciSurvey_ are used (In this case, only scale extremes were labelled for the BFI-10 variables. You may note that values and labels differ for some of the scale variables, e.g., `bfi10_ext1`. This is because these variables are reverse-coded).
+The returned tibble contains variable and value labels (using the [`labelled`](https://cran.r-project.org/web/packages/labelled/) package). Value labels are visible in the console output. Variable labels are also displayed in the R data viewer (`View()`). If no labels are defined for some values, the numeric anchors as set in _SoSciSurvey_ are used (In this case, only scale extremes were labelled for the BFI-10 variables. You may note that values and labels differ for some of the scale variables, e.g., `bfi10_ext1`. This is because these variables are reverse-coded).
 
 ### Additional attributes
 
