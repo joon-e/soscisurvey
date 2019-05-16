@@ -6,7 +6,7 @@
 \alias{soscisurvey-package}
 \title{SoSciSurvey: Load data from SoSciSurvey into R}
 \description{
-This package loads data obtained with \link[=https://www.soscisurvey.de/en/index]{SoSciSurvey} as a tidy,
+This package loads data obtained with \href{https://www.soscisurvey.de/en/index}{SoSciSurvey} as a tidy,
     labelled dataset.
 }
 \section{Obtain API key}{
