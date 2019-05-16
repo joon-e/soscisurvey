@@ -36,6 +36,10 @@ read_sosci <- function(URL, ...) {
   data <- json$data %>%
     bind_rows()
 
+  vnames <- tibble(
+    var = names(data)
+  )
+
   # Get variable info
   varinfo <- json$variables
 
@@ -48,6 +52,10 @@ read_sosci <- function(URL, ...) {
     sysvar = unlist(map(varinfo, "sysvar", .null = NA))
   ) %>%
     filter(var %in% names(data))
+
+  # Sort like data
+  vars <- vnames %>%
+    left_join(vars, by = "var")
 
   # Get value labels
   val.labels <- varinfo %>%
@@ -89,7 +97,7 @@ read_sosci <- function(URL, ...) {
   data <- modify2(data, miss.vals, add_missings)
 
   # Add variable labels
-  var.labels <- stats::setNames(as.character(vars$label), vars$var)
+  var.labels <- stats::setNames(as.list(as.character(vars$label)), vars$var)
   var_label(data) <- var.labels
 
   return(data)
