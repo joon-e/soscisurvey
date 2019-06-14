@@ -168,7 +168,7 @@ attributes(data$age)
 In most cases, *SoSciSurvey* represents missing data with various
 integer codes (e.g., “-9” = “Not answered”, “-1” = “Prefer not to
 answer”). These are defined as user-defined NA values by
-`labelled::na_values()` in the tibble returned by `sosci()`. While
+`labelled::na_values()` in the tibble returned by `read_sosci()`. While
 `is.na()` will return `TRUE` for user-defined NA values, most functions
 will most likely treat them as integers. You can easily convert all
 user-defined NA values to explicit `NA` values with `purrr::modify()`
@@ -206,7 +206,7 @@ regression models). This can be done using `labelled::to_factor`. To
 ensure that only categorical variables are converted (and not, for
 example, scales with labelled extremes), you may use a combination of
 `purrr::modify_if()` and the `var.type` attribute set by
-`sosci()`:
+`read_sosci()`:
 
 ``` r
 purrr::modify_if(data, ~ attr(., "var.type") %in% c("nominal", "dichotomous"), labelled::to_factor)

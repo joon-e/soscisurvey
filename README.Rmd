@@ -84,7 +84,7 @@ attributes(data$age)
 
 #### Missing values
 
-In most cases, _SoSciSurvey_ represents missing data with various integer codes (e.g., "-9" = "Not answered", "-1" = "Prefer not to answer"). These are defined as user-defined NA values by `labelled::na_values()` in the tibble returned by `sosci()`. While `is.na()` will return `TRUE` for user-defined NA values, most functions will most likely treat them as integers. You can easily convert all user-defined NA values to explicit `NA` values with `purrr::modify()` and `labelled::user_na_to_na()`.
+In most cases, _SoSciSurvey_ represents missing data with various integer codes (e.g., "-9" = "Not answered", "-1" = "Prefer not to answer"). These are defined as user-defined NA values by `labelled::na_values()` in the tibble returned by `read_sosci()`. While `is.na()` will return `TRUE` for user-defined NA values, most functions will most likely treat them as integers. You can easily convert all user-defined NA values to explicit `NA` values with `purrr::modify()` and `labelled::user_na_to_na()`.
 
 ```{r missings}
 purrr::modify(data, labelled::user_na_to_na)
@@ -92,7 +92,7 @@ purrr::modify(data, labelled::user_na_to_na)
 
 #### Labels to factors
 
-Likewise, you may want to convert labelled variables to factors for analytical purposes (e.g., treating them as categorical variables in regression models). This can be done using `labelled::to_factor`. To ensure that only categorical variables are converted (and not, for example, scales with labelled extremes), you may use a combination of `purrr::modify_if()` and the `var.type` attribute set by `sosci()`:
+Likewise, you may want to convert labelled variables to factors for analytical purposes (e.g., treating them as categorical variables in regression models). This can be done using `labelled::to_factor`. To ensure that only categorical variables are converted (and not, for example, scales with labelled extremes), you may use a combination of `purrr::modify_if()` and the `var.type` attribute set by `read_sosci()`:
 
 ```{r factorize}
 purrr::modify_if(data, ~ attr(., "var.type") %in% c("nominal", "dichotomous"), labelled::to_factor)
