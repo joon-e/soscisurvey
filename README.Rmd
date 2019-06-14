@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 # SoSciSurvey
 
-This package loads data obtained with [SoSciSurvey](https://www.soscisurvey.de/en/index) into _R_ as a tidy, labelled dataset by...
+This package loads data collected with [SoSciSurvey](https://www.soscisurvey.de/en/index) into _R_ as a tidy, labelled dataset by...
  
  - grabbing the data as a JSON file via the [SoSciSurvey API](https://www.soscisurvey.de/help/doku.php/en:results:data-api)
  - turning the JSON data into a `tibble`

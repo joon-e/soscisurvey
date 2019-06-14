@@ -3,7 +3,7 @@
 
 # SoSciSurvey
 
-This package loads data obtained with
+This package loads data collected with
 [SoSciSurvey](https://www.soscisurvey.de/en/index) into *R* as a tidy,
 labelled dataset by…
 
