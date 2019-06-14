@@ -202,7 +202,7 @@ purrr::modify(data, labelled::user_na_to_na)
 
 Likewise, you may want to convert labelled variables to factors for
 analytical purposes (e.g., treating them as categorical variables in
-regression models). This can be done using `labelled::to_factor`. To
+regression models). This can be done using `labelled::to_factor()`. To
 ensure that only categorical variables are converted (and not, for
 example, scales with labelled extremes), you may use a combination of
 `purrr::modify_if()` and the `var.type` attribute set by
@@ -229,6 +229,53 @@ purrr::modify_if(data, ~ attr(., "var.type") %in% c("nominal", "dichotomous"), l
 #> #   device_count <int+lbl>, device_tv <fct>, device_computer <fct>,
 #> #   device_tablet <fct>, device_phone <fct>, device_console <fct>,
 #> #   FINISHED <int>, Q_VIEWER <int>, LASTPAGE <int>, MAXPAGE <int>
+```
+
+#### Remove labels
+
+To remove all labels, use `labelled::remove_labels()`. This also removes
+user-defined missing value labels, so make sure to convert those into
+explicit `NA` values beforehand as shown above if you want to retain
+this information.
+
+``` r
+labelled::remove_labels(data)
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> Some user defined missing values have been removed but not converted to NA.
+#> # A tibble: 10 x 24
+#>     CASE   age gender education bfi10_ext1 bfi10_agree1 bfi10_con1
+#>    <int> <int>  <int>     <int>      <int>        <int>      <int>
+#>  1     5    45     -1         5          4            6          4
+#>  2     6    NA      3         5          5            2          5
+#>  3     7    56      1         2          5            3         -9
+#>  4     8    NA      2         4          2            4          5
+#>  5     9    65      1         3          7            4          5
+#>  6    10    19      2        -1          1            3          5
+#>  7    11    25     -1         1          1            3          4
+#>  8    12    51      3         5         -9            5         -9
+#>  9    13    71      1         2          7            7          1
+#> 10    14    38      2         3          1            1          1
+#> # ... with 17 more variables: bfi10_neuro1 <int>, bfi10_open1 <int>,
+#> #   bfi10_ext2 <int>, bfi10_agree2 <int>, bfi10_con2 <int>,
+#> #   bfi10_neuro2 <int>, bfi10_open2 <int>, device_count <int>,
+#> #   device_tv <int>, device_computer <int>, device_tablet <int>,
+#> #   device_phone <int>, device_console <int>, FINISHED <int>,
+#> #   Q_VIEWER <int>, LASTPAGE <int>, MAXPAGE <int>
 ```
 
 ## Acknowledgements

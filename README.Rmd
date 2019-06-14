@@ -92,11 +92,20 @@ purrr::modify(data, labelled::user_na_to_na)
 
 #### Labels to factors
 
-Likewise, you may want to convert labelled variables to factors for analytical purposes (e.g., treating them as categorical variables in regression models). This can be done using `labelled::to_factor`. To ensure that only categorical variables are converted (and not, for example, scales with labelled extremes), you may use a combination of `purrr::modify_if()` and the `var.type` attribute set by `read_sosci()`:
+Likewise, you may want to convert labelled variables to factors for analytical purposes (e.g., treating them as categorical variables in regression models). This can be done using `labelled::to_factor()`. To ensure that only categorical variables are converted (and not, for example, scales with labelled extremes), you may use a combination of `purrr::modify_if()` and the `var.type` attribute set by `read_sosci()`:
 
 ```{r factorize}
 purrr::modify_if(data, ~ attr(., "var.type") %in% c("nominal", "dichotomous"), labelled::to_factor)
 ```
+
+#### Remove labels
+
+To remove all labels, use `labelled::remove_labels()`. This also removes user-defined missing value labels, so make sure to convert those into explicit `NA` values beforehand as shown above if you want to retain this information. 
+
+```{r}
+labelled::remove_labels(data)
+```
+
 
 ## Acknowledgements
 
