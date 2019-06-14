@@ -19,7 +19,6 @@
 #'
 #' @export
 read_sosci <- function(URL, ...) {
-
   params <- list(...)
 
   # Add variable info to API parameters
