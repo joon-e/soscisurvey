@@ -81,6 +81,7 @@ fetch_survey <- function(URL, ...) {
   labelled::var_label(data) <- var.labels
 
   # Metadata (json$metadata)
+  attr(data, "project") <- json$metadata$project
 
   # Return tibble
   return(data)
