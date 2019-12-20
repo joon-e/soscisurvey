@@ -10,34 +10,22 @@ r_chunk <- function(x) {
 }
 
 
-get_value_table <- function(var) {
-
-  labs <- labelled::val_labels(var)
-
-  if (!is.null(labs)) {
-    val_labels <- tibble::enframe(labs, "Label", "Value")
-  } else {
-    val_labels <- tibble::tibble(values = sort(unique(var)))
-  }
-
-  val_labels %>%
-    dplyr::full_join(table(var, useNA = "ifany") %>%
-                       tibble::enframe("Value", "n") %>%
-                       dplyr::mutate(Value = as.integer(.data$Value)),
-                     by = "Value") %>%
-    dplyr::select("Value", "Label", "n")
-}
-
-prepare_var_info <- function(var, name) {
+prepare_var_info <- function(var, name, options) {
 
   header <- prepare_var_header(var, name)
 
   body <- c()
 
-  if (is_table_var(var)) {
-    exp <- glue("knitr::kable(get_value_table(data${name}), ",
-                "caption = 'Value labels & counts', ",
-                "align = c('l', 'l', 'r'))")
+  if (check_attribute(var, "var.type", c("nominal", "ordinal"))) {
+
+    if (options$output == "html_document") {
+      exp <- glue("reactable::reactable(get_value_table(data${name}), ",
+                  "columns = list(Value = reactable::colDef(align = 'left')))")
+    } else {
+      exp <- glue("knitr::kable(get_value_table(data${name}), ",
+                  "caption = 'Value labels & counts', ",
+                  "align = c('l', 'l', 'r'))")
+    }
 
     body <- c(body, r_chunk(exp))
   }
@@ -85,7 +73,3 @@ prepare_var_header <- function(var, name) {
        ")
 
 }
-
-is_user_var <- function(x) !is.null(attr(x,  "var.input")) & attr(x, "var.input") != "system"
-
-is_table_var <- function(x) !is.null(attr(x,  "var.type")) & attr(x, "var.type") %in% c("nominal", "ordinal")

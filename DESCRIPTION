@@ -33,4 +33,5 @@ RoxygenNote: 6.1.1
 Suggests: 
     usethis,
     DT,
-    knitr
+    knitr,
+    reactable

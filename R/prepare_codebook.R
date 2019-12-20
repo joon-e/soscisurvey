@@ -1,7 +1,6 @@
-codebook_data <- function(data, data_path) {
+codebook_data <- function(data, data_path, options) {
 
   df_name <- as_name(quo(data))
-
 
   load_data = glue("
                    ```{{r}}
@@ -14,12 +13,14 @@ codebook_data <- function(data, data_path) {
   started <- glue("`r min({df_name}$STARTED)`")
   ended <- glue("`r max({df_name}$STARTED)`")
 
-  user_data <- dplyr::select_if(data, is_user_var)
+  user_data <- dplyr::select_if(data, ~ !check_attribute(., "var.input", "system"))
+  # Or define through options?
 
-  codebook <- glue_collapse(purrr::imap_chr(user_data, prepare_var_info), sep = "\n")
+  codebook <- glue_collapse(purrr::imap_chr(user_data, prepare_var_info, options), sep = "\n")
 
   list(
     project = attr(data, "project"),
+    output = options$output,
     load_data = load_data,
     df_name = df_name,
     subjects = subjects,
@@ -33,12 +34,13 @@ codebook_data <- function(data, data_path) {
 
 
 prepare_codebook <- function(data, codebook_path = "codebook.Rmd", data_path = "data.rds",
-                             table_style = "kable") {
+                             options = list(output = "html_document")) {
 
-  # Suggests testen (usethis)
+  # Suggests testen
   requireNamespace("usethis", quietly = TRUE)
   requireNamespace("knitr", quietly = TRUE)
-  if (table_style == "datatable") requireNamespace("DT", quietly = TRUE)
+
+  if (options$output == "html_document") requireNamespace("reactable", quietly = TRUE)
 
 
   # Save data as RDS
@@ -47,5 +49,8 @@ prepare_codebook <- function(data, codebook_path = "codebook.Rmd", data_path = "
   ui_done("Writing {ui_value(data_path)}")
 
   # Create Rmd
-  usethis::use_template("codebook.Rmd", data = codebook_data(data, data_path), package = "soscisuRvey")
+  usethis::use_template("codebook.Rmd",
+                        save_as = codebook_path,
+                        data = codebook_data(data, data_path, options),
+                        package = "soscisuRvey")
 }

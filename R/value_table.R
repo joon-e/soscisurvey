@@ -1,12 +1,4 @@
----
-title: "Codebook for '{{{ project }}}'"
-output: {{{ output }}}
----
-
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
-ggplot2::theme_set(ggplot2::theme_bw())
-
+# Tidy umbauen
 get_value_table <- function(var) {
 
   labs <- labelled::val_labels(var)
@@ -25,18 +17,3 @@ get_value_table <- function(var) {
     dplyr::select("Value", "Label", "n") %>%
     dplyr::mutate(Label = ifelse(is.na(.data$Label), "Missing", .data$Label))
 }
-
-library(magrittr)
-```
-
-{{{ load_data }}}
-
-# Project information
-* Subjects = {{{ subjects }}}
-* Variables = {{{ variables }}}
-* Started: {{{ started }}}
-* Ended: {{{ ended }}}
-
-# Variable information
-
-{{{ codebook }}}

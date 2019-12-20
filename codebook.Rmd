@@ -1,0 +1,1374 @@
+---
+title: "Codebook for 'meandromeda'"
+output: pdf_document
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+
+get_value_table <- function(var) {
+
+  labs <- labelled::val_labels(var)
+
+  if (!is.null(labs)) {
+    val_labels <- tibble::enframe(labs, "Label", "Value")
+  } else {
+    val_labels <- tibble::tibble(values = sort(unique(var)))
+  }
+
+  val_labels %>%
+    dplyr::full_join(table(var, useNA = "ifany") %>%
+                       tibble::enframe("Value", "n") %>%
+                       dplyr::mutate_all(as.integer),
+                     by = "Value") %>%
+    dplyr::select("Value", "Label", "n") %>%
+    dplyr::mutate(Label = ifelse(is.na(.data$Label), "Missing", .data$Label))
+}
+
+library(magrittr)
+```
+
+```{r}
+data <- readRDS('data.rds')
+```
+
+# Project information
+* Subjects = `r nrow(data)`
+* Variables = `r ncol(data)`
+* Started: `r min(data$STARTED)`
+* Ended: `r max(data$STARTED)`
+
+# Variable information
+
+## [SD07] Purchasing intentions
+
+* Question wording: %game% will be released on March 21 in the US and on March 23 in Europe. Which of the following statements best describes your intentions in relation to purchasing/playing %game%?
+
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_01] Motives: ... slip into different roles.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_02] Motives: ... do things that are impossible or difficult in real life.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_03] Motives: ... achieve better and better results.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_04] Motives: ... enhance my in-game skills by training.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_05] Motives: ... explore and investigate the game world.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_06] Motives: ... be amazed by vast and „epic“ game content.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_07] Motives: ... experience game content that causes me to think about games in new ways.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_08] Motives: ... experience game content that stands out of my typical gaming experience.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_09] Motives: ... make friends.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_10] Motives: ... get to know other players.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_11] Motives: ... conjointly play with others.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_11), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_12] Motives: ... play with others in a team.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_12), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_13] Motives: ... beat my co-players.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_13), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS01_14] Motives: ... compare my performance with others.
+
+* Question wording: People play games for many different reasons. We would like to know why you want to play %game%.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS01_14), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS02_01] Attributes: Graphics
+
+* Question wording: And how important are the following aspects of %game% to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS02_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS02_02] Attributes: Mechanics / controls
+
+* Question wording: And how important are the following aspects of %game% to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS02_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS02_03] Attributes: Topic of the game
+
+* Question wording: And how important are the following aspects of %game% to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS02_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS02_04] Attributes: Story of the game
+
+* Question wording: And how important are the following aspects of %game% to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS02_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GS02_05] Attributes: Game world
+
+* Question wording: And how important are the following aspects of %game% to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GS02_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_01] BFI-10: ... is reserved. (reversed)
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_02] BFI-10: ... is generally trusting.
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_03] BFI-10: ... tends to be lazy. (reversed)
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_04] BFI-10: ... is relaxed, handles stress well. (reversed)
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_05] BFI-10: ... has few artistic interests. (reversed)
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_06] BFI-10: ... is outgoing, sociable.
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_07] BFI-10: ... tends to find fault with others. (reversed)
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_08] BFI-10: ... does a thorough job.
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_09] BFI-10: ... gets nervous easily.
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE01_10] BFI-10: ... has an active imagination.
+
+* Question wording: How well do the following statements describe your personality?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE01_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_01] Eudaimonic and hedonic motivations: I like games that challenge my way of seeing the world.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_02] Eudaimonic and hedonic motivations: I like games that make me more reflective.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_03] Eudaimonic and hedonic motivations: I like games that focus on meaningful human conditions.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_04] Eudaimonic and hedonic motivations: My favorite kinds of games are ones that make me think.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_05] Eudaimonic and hedonic motivations: I am very moved by games that are about people’s search for greater understanding in life.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_06] Eudaimonic and hedonic motivations: I like games that have profound meanings or messages to convey.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_07] Eudaimonic and hedonic motivations: It’s important to me that I have fun when playing a game.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_08] Eudaimonic and hedonic motivations: Games that are enjoyable are among my favorites.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_09] Eudaimonic and hedonic motivations: I find that even simple games can be enjoyable as long as they are fun.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_10] Eudaimonic and hedonic motivations: I like games that may be considered "silly" or "shallow" if they let me have a good time.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_11] Eudaimonic and hedonic motivations: For me, the best games are ones that are entertaining.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_11), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE02_12] Eudaimonic and hedonic motivations: My favorite kinds of games are joyful and fun.
+
+* Question wording: People play video games for different reasons. When you think about the <span style="color: #5273B9;">games you like in general</span>, how well do the following statements reflect your gaming preferences?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE02_12), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_01] Awe: I often feel awe.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_02] Awe: I see beauty all around me.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_03] Awe: I feel wonder almost every day.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_04] Awe: I often look for patterns in the objects around me.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_05] Awe: I have many opportunities to see the beauty of nature.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [PE03_06] Awe: I seek out experiences that challenge my understanding of the world.
+
+* Question wording: When thinking about yourself: How strongly do you agree with the following statements?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$PE03_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD01_01] Age: I am ... years old.
+
+* Question wording: How old are you?
+* Type: metric
+* Input: open
+* System name: NA
+
+## [SD02] Gender
+
+* Question wording: What is your gender?
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD03] Education
+
+* Question wording: What is the highest level of education you have completed?
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD04_01] Gaming per weekday:  ... minutes on each week day.
+
+* Question wording: How many minutes do you spend on average on a <em>week day</em> (Monday – Friday) playing video games?
+* Type: metric
+* Input: open
+* System name: NA
+
+## [SD05_01] Gaming per weekend day:  ... minutes each weekend day.
+
+* Question wording: And how many minutes do you spend on average on a <em>weekend day</em> (Saturday and Sunday) playing video games?
+
+* Type: metric
+* Input: open
+* System name: NA
+
+## [SD06] Familiarity series
+
+* Question wording: As you may know, %game% is not the first title in the %gameShort% series. Hence, first of all, we would like to know how familiar you are with the game series.
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD08_01] Remarks: [01]
+
+* Question wording: 
+* Type: text
+* Input: open
+* System name: NA
+
+## [SD09] Language profiency
+
+* Question wording: How experienced are you with the English language?
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD10] Nationality
+
+* Question wording: What country are you from?
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD10s] Nationality (free text)
+
+* Question wording: What country are you from?
+* Type: text
+* Input: open
+* System name: NA
+
+## [SD12_01] Fandom: I consider myself to be a %gameShort% fan.
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD12_02] Fandom: My friends see me as a %gameShort% fan.
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD12_03] Fandom: I have spend a considerable amount of money on %gameShort% in the past years.
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD12_04] Fandom: I have not devoted much energy to %gameShort% in the past years.
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD12_05] Fandom: I followed or participated in discussions of the %gameShort% community in the past years (e.g., on Reddit or Facebook).
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD12_06] Fandom: I have created %gameShort% related fan content myself in the past years (e.g., fan art, fanfiction, fansites, videos, walkthroughs).
+
+* Question wording: When you think of the %gameShort% franchise in general, how much do the following statements apply to you?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$SD12_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_01] Gratifications obtained: I slipped into different roles.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_02] Gratifications obtained: I did things that are impossible or difficult in real life.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_03] Gratifications obtained: I achieved better and better results.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_04] Gratifications obtained: I enhanced my in-game skills by training.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_05] Gratifications obtained: I explored and investigated the game world.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_06] Gratifications obtained: I was amazed by vast and „epic“ game content.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_07] Gratifications obtained: I experienced game content that causes me to think about games in new ways.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_08] Gratifications obtained: I experienced game content that stands out of my typical gaming experience.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_09] Gratifications obtained: I made friends.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_10] Gratifications obtained: I got to know other players.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_11] Gratifications obtained: I conjointly played with others.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_11), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_12] Gratifications obtained: I played with others in a team.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_12), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_13] Gratifications obtained: I beat my co-players.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_13), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_14] Gratifications obtained: I compared my performance with others.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_14), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_15] Gratifications obtained: I liked the graphics of %game%.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_15), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_16] Gratifications obtained: I liked the mechanics/controls of %game%.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_16), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_17] Gratifications obtained: I liked the topic of %game%.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_17), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_18] Gratifications obtained: I liked the story of %game%.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_18), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE01_19] Gratifications obtained: I liked the game world of %game%.
+
+* Question wording: Thanks! Now we are interested in your experience with %game% in greater detail. How do the following statements describe your playing experience with %game% so far?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE01_19), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_01] Eudaimonic and hedonic gratifications: I had a good time playing this game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_02] Eudaimonic and hedonic gratifications: I liked to play the game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_03] Eudaimonic and hedonic gratifications: I found the game entertaining.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_04] Eudaimonic and hedonic gratifications: It was great fun to take control in the game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_05] Eudaimonic and hedonic gratifications: The game invited me to take control of it.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_06] Eudaimonic and hedonic gratifications: The game was not at all interesting to me.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_07] Eudaimonic and hedonic gratifications: I found the game boring.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_08] Eudaimonic and hedonic gratifications: I was motivated to participate in this game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_09] Eudaimonic and hedonic gratifications: I found this game to be very meaningful.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_10] Eudaimonic and hedonic gratifications: I was moved by this game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_11] Eudaimonic and hedonic gratifications: The game was thought provoking.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_11), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_12] Eudaimonic and hedonic gratifications: I was at the edge of my seat while playing this game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_12), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_13] Eudaimonic and hedonic gratifications: This was a heart-pounding kind of game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_13), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_14] Eudaimonic and hedonic gratifications: The game was suspenseful.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_14), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_15] Eudaimonic and hedonic gratifications: I found the relationships I formed with the characters in this game fulfilling.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_15), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_16] Eudaimonic and hedonic gratifications: I really felt for the characters in the game.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_16), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE02_17] Eudaimonic and hedonic gratifications: It was hard for me to build an emotional connection to the characters.
+
+* Question wording: Again, please think about your experience with %game% and tell us how much the following statements apply to you.
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE02_17), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_01] Affective reactions: ...upbeat
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_02] Affective reactions: ...happy
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_03] Affective reactions: ...sad
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_04] Affective reactions: ...depressed
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_04), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_05] Affective reactions: ...compassionate
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_05), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_06] Affective reactions: ...inspired
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_06), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_07] Affective reactions: ...introspective
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_07), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_08] Affective reactions: ...contemplative
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_08), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_09] Affective reactions: ...in awe
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_09), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_10] Affective reactions: ...in wonder
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_10), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_11] Affective reactions: ...amazed
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_11), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE03_12] Affective reactions: ...fascinated
+
+* Question wording: People can experience several different feelings while playing a game. We would like to know how intensely you have experienced the following feelings while playing %game%. 
+
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GE03_12), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GE05_01] Rating: [No Description] 01
+
+* Question wording: The following questions deal with your experiences with %game%. Let's start with an overall rating: How would you rate %game% on a scale from 0 to 100 %? 
+* Type: metric
+* Input: scale
+* System name: NA
+
+## [GP01] Progress
+
+* Question wording: How intensively have you played %game%? 
+* Type: nominal
+* Input: selection
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GP01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GP02_01] Play Time:  ... hours
+
+* Question wording: How much time did you invest in playing %game% up to this point?
+* Type: metric
+* Input: open
+* System name: NA
+
+## [GP03_01] Continuance intentions: In the future, I will continue to play %game%.
+
+* Question wording: And what about the future? How likely are you to continue to play and recommend %game%?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GP03_01), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GP03_02] Continuance intentions: In the future, I will play %game% often.
+
+* Question wording: And what about the future? How likely are you to continue to play and recommend %game%?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GP03_02), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [GP03_03] Continuance intentions: I will recommend %game% to other people.
+
+* Question wording: And what about the future? How likely are you to continue to play and recommend %game%?
+* Type: ordinal
+* Input: scale
+* System name: NA
+
+```{r}
+knitr::kable(get_value_table(data$GP03_03), caption = 'Value labels & counts', align = c('l', 'l', 'r'))
+```
+
+## [SD11_01] Remarks W2: [01]
+
+* Question wording: If you have any further questions or remarks, you may enter them here. 
+* Type: text
+* Input: open
+* System name: NA
+
+## [GP04_01] Restrictions: I finished the main story of %game%.
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: dichotomous
+* Input: checkbox
+* System name: NA
+
+## [GP04_02] Restrictions: %game% is too difficult for me.
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: dichotomous
+* Input: checkbox
+* System name: NA
+
+## [GP04_03] Restrictions: I do not have enough free time at the moment to play %game%.
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: dichotomous
+* Input: checkbox
+* System name: NA
+
+## [GP04_04] Restrictions: I have no more access to %game% (e.g., due to borrowing it).
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: dichotomous
+* Input: checkbox
+* System name: NA
+
+## [GP04_05] Restrictions: Other reason(s)
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: dichotomous
+* Input: checkbox
+* System name: NA
+
+## [GP04_05a] Restrictions: Other reason(s) (free text)
+
+* Question wording: You have indicated that it is very unlikely that you will continue to play %game%. While we have already asked you about your enjoyment of the game, there are several other reasons why one does abandon a certain game. Please check all that apply to you.
+* Type: text
+* Input: open
+* System name: NA
